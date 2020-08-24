@@ -99,6 +99,23 @@ abstract class DecodeHelper implements HelperCore {
     }
     buffer..writeln(';\n}')..writeln();
 
+    ///在创建构造的时候,多生成一个fetch方法
+    bool iszw = targetClassReference.startsWith("ZW");
+    if (iszw) {
+      buffer.write('$targetClassReference '
+          '${prefix}FetchThis${genericClassArgumentsImpl(true)}'
+          '($mapType json , $targetClassReference instance ) {\n');
+      buffer..write(checks)..write('''
+      return instance''');
+      for (final field in data.fieldsToSet) {
+        buffer
+          ..writeln()
+          ..write('    ..$field = ')
+          ..write(deserializeFun(field));
+      }
+      buffer..write(';\n}\n');
+    }
+
     return CreateFactoryResult(buffer.toString(), data.usedCtorParamsAndFields);
   }
 
