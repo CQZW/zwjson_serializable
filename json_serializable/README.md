@@ -1,5 +1,7 @@
 [![Pub Package](https://img.shields.io/pub/v/json_serializable.svg)](https://pub.dev/packages/json_serializable)
 
+在生成JOSN文件的时候,多生成了一个 fetchThis 方法 ,用于更新已存在的实例,自己下载代码到本地使用吧
+
 Provides [Dart Build System] builders for handling JSON.
 
 The builders generate code when they find members annotated with classes defined
