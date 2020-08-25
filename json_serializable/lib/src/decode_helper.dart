@@ -102,9 +102,9 @@ abstract class DecodeHelper implements HelperCore {
     ///在创建构造的时候,多生成一个fetch方法
     bool iszw = targetClassReference.startsWith("ZW");
     if (iszw) {
-      buffer.write('$targetClassReference '
+      buffer.write('dynamic '
           '${prefix}FetchThis${genericClassArgumentsImpl(true)}'
-          '($mapType json , $targetClassReference instance ) {\n');
+          '($mapType json , dynamic instance ) {\n');
       buffer..write(checks)..write('''
       return instance''');
       for (final field in data.fieldsToSet) {
